@@ -1,0 +1,30 @@
+#------------------------
+# - preparación
+# - en terminal
+ cat *.plu >> alls.plu
+# - en gedit
+# borar las B reemplazandolas por espacio, y las líneas con P eliminarlas (  $ sed '/P/ d' fichero > fichero2.txt)
+# Aplicar Separar_estaciones.sh (antes scipt.sh) para separar estacioens
+# - en terminal
+mkdir ./Estaciones
+mv *.dat ./Estaciones
+mkdir ./precip_est
+
+#================================
+# correr Correr_programas.sh
+#================================
+cd /home/gustavo/Dropbox/Documentos/Maestria_CCA/Proyecto_tesis/SACM/Datos/plu_01/Estaciones
+echo -e "corriendo Precip_acomodo_datos.r ... \n"
+echo -e "Arreglando los datos ... \n"
+../0_Arreglo_datos.sh
+echo -e "corriendo Precip_V5.r ... \n"
+echo -e "Moviendo datos ... \n"
+mv precip_est_* ./precip_est
+cd ./precip_est
+echo -e "cambiando nombre ... \n"
+./1_Cambiar_nombre.sh
+echo -e "juntando datos a precip_2001.csv ... \n"
+paste -d "," *csv >> precip_2001.csv
+echo -e "\nFinalizado 2001"
+
+
