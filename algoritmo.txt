@@ -1,4 +1,5 @@
 #------------------------
+# Por MCT. Gustavo Javier González Moraga
 # - preparación
 # - en terminal
  cat *.plu >> alls.plu
